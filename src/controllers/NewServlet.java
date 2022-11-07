@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
@@ -10,18 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.protobuf.Message;
-
 import utils.DBUtil;
 
-@WebServlet("/index")
-public class IndexServlet extends HttpServlet {
+/**
+ * Servlet implementation class NewServlet
+ */
+@WebServlet("/new")
+public class NewServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public IndexServlet() {
+    public NewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,13 +29,13 @@ public class IndexServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
+        em.getTransaction().begin();
 
-        List<Message> messages = em.createNamedQuery("getAllMessages", Message.class).getResultList();
-        response.getWriter().append(Integer.valueOf(messages.size()).toString());
+
+
 
         em.close();
-    }
-}
+    }}
+
